@@ -7,14 +7,15 @@ import { ApplictationContext } from "../index";
 
 export default function Navigation() {
   const { values, setValues } = useContext(ApplictationContext);
+  const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
-    setValues({ ...values, tabIndicator: newValue });
+    setValue(newValue);
   };
   return (
     <Box sx={{ bgcolor: "background.paper", width: "100%" }}>
       <AppBar position="static">
         <Tabs
-          value={values.tabIndicator}
+          value={value}
           onChange={handleChange}
           indicatorColor="secondary"
           textColor="inherit"
