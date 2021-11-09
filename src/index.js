@@ -18,8 +18,8 @@ const App = () => {
     <Provider store={store}>
       <ApplictationContext.Provider
         value={{
-          values: values,
-          setValues: setValues,
+          values,
+          setValues,
         }}
       >
         <div className="container_app">

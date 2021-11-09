@@ -7,7 +7,7 @@ const loadCharactersFetchDataSuccess = (characters) => {
   };
 };
 export const loadCharactersFetchData = (data) => async (dispatch) => {
-  const { url, values, setValues } = data;
+  const { url } = data;
   let response = await fetch(url);
   if (response.status === 200) {
     response = await response.json();

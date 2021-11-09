@@ -1,12 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import { ApplictationContext } from "../../index";
 import { useDispatch, useSelector } from "react-redux";
 import { loadCharactersFetchData } from "../../store/characters/action";
-import endpoints from "../constants/Endpoints";
 import CardCharacter from "./CardCharacter";
 import { makeStyles } from "@mui/styles";
 
@@ -26,22 +24,28 @@ export default function ListCharacters() {
   const classes = useStyles();
   const { values, setValues } = useContext(ApplictationContext);
   const dispatch = useDispatch();
-  const getDisciplines = (data) => dispatch(loadCharactersFetchData(data));
-  const { results } = useSelector((state) => state.charactersReducer);
+  const getCharacters = (data) => dispatch(loadCharactersFetchData(data));
+  const listCharacters = useSelector((state) => state.charactersReducer);
+  const pagination = [];
+  for (let i = 1; i <= 20; i++) {
+    pagination.push(i);
+  }
+  const page = useRef(1);
+  let url = `https://rickandmortyapi.com/api/character/${pagination
+    .filter((item) => (page.current === 1 ? item < 11 : item > 10))
+    .join(",")}`;
   useEffect(() => {
     const data = {
-      url: endpoints.getCharacters,
-      values,
-      setValues,
+      url,
     };
-    getDisciplines(data);
-  }, [endpoints.getCharacters]);
-  console.log(results);
+    getCharacters(data);
+  }, [url]);
+  console.log(pagination);
   return (
     <div className={classes.container}>
       <Typography className={classes.title}>List characters</Typography>
       <List>
-        {results?.map((item) => (
+        {listCharacters?.map((item) => (
           <ListItem key={item.id}>
             <CardCharacter item={item} />
           </ListItem>
