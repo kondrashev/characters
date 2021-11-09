@@ -21,8 +21,26 @@ export default function Navigation() {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="Characters" />
-          <Tab label="Episodes" />
+          <Tab
+            label="Characters"
+            onClick={() => {
+              setValues({
+                ...values,
+                showCharacters: true,
+                showEpisodes: false,
+              });
+            }}
+          />
+          <Tab
+            label="Episodes"
+            onClick={() => {
+              setValues({
+                ...values,
+                showEpisodes: true,
+                showCharacters: false,
+              });
+            }}
+          />
         </Tabs>
       </AppBar>
     </Box>
