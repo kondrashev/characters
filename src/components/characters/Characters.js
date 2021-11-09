@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import ListCharacters from "./ListCharacters";
 
 const Characters = () => {
-  return <div>List characters</div>;
+  return (
+    <div>
+      <ListCharacters />
+    </div>
+  );
 };
 export default Characters;
