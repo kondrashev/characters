@@ -1,22 +1,24 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import ListCharacters from "./ListCharacters";
 import PaginationRounded from "./Pagination";
-import { makeStyles } from "@mui/styles";
+import { ApplictationContext } from "../../index";
+import FilterPanel from "./FilterPanel";
 
-const useStyles = makeStyles({
-  container: {
-    display: "flex",
-    msFlexDirection: "column",
-    justifyContent: "space-between",
-  },
-});
 const Characters = () => {
-  const classes = useStyles();
+  const { values, setValues } = useContext(ApplictationContext);
+  const filterFields = {
+    Name: "name",
+    Status: "status",
+    Species: "species",
+    Type: "type",
+    Gender: "gender",
+  };
   return (
-    <div className={classes.container}>
+    <>
+      <FilterPanel filterFields={filterFields} />
       <ListCharacters />
       <PaginationRounded />
-    </div>
+    </>
   );
 };
 export default Characters;
