@@ -88,17 +88,6 @@ export default function ListEpisodes() {
   useEffect(() => {
     getEpisodes(values.urlEpisodes);
   }, [values.urlEpisodes]);
-  console.log(listEpisodes); //////////////////////
-  //   const rows = listEpisodes?.map((item) => {
-  //     return createData(
-  //       item.name,
-  //       item.air_date,
-  //       item.episode,
-  //       item.created,
-  //       item.url,
-  //       item.characters
-  //     );
-  //   });
   const rows = !listEpisodes.info
     ? listEpisodes?.map((item) => {
         return createData(
