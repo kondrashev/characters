@@ -87,7 +87,7 @@ export default function ListEpisodes() {
   const listEpisodes = useSelector((state) => state.episodesReducer);
   useEffect(() => {
     getEpisodes(values.urlEpisodes);
-  }, []);
+  }, [values.urlEpisodes]);
   console.log(listEpisodes); //////////////////////
   const rows = listEpisodes?.map((item) => {
     return createData(

@@ -26,12 +26,19 @@ export default function PaginationRounded(props) {
   };
   const handleChange = (event, value) => {
     if (event.target.value !== undefined) {
-      setValues({
-        ...values,
-        urlCharacters: `https://rickandmortyapi.com/api/character/${pagination(
-          value
-        )}`,
-      });
+      count !== 2
+        ? setValues({
+            ...values,
+            urlCharacters: `https://rickandmortyapi.com/api/character/${pagination(
+              value
+            )}`,
+          })
+        : setValues({
+            ...values,
+            urlEpisodes: `https://rickandmortyapi.com/api/episode/${pagination(
+              value
+            )}`,
+          });
     }
   };
   return (
