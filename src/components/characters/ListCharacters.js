@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
@@ -26,21 +26,14 @@ export default function ListCharacters() {
   const dispatch = useDispatch();
   const getCharacters = (data) => dispatch(loadCharactersFetchData(data));
   const listCharacters = useSelector((state) => state.charactersReducer);
-  const pagination = [];
-  for (let i = 1; i <= 20; i++) {
-    pagination.push(i);
-  }
-  const page = useRef(1);
-  let url = `https://rickandmortyapi.com/api/character/${pagination
-    .filter((item) => (page.current === 1 ? item < 11 : item > 10))
-    .join(",")}`;
+  let url = `https://rickandmortyapi.com/api/character`;
   useEffect(() => {
     const data = {
       url,
     };
     getCharacters(data);
   }, [url]);
-  console.log(pagination);
+  // console.log(pagination);
   return (
     <div className={classes.container}>
       <Typography className={classes.title}>List characters</Typography>
