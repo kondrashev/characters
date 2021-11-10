@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -9,7 +9,7 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { ApplictationContext } from "../../index";
+import { makeStyles } from "@mui/styles";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -22,18 +22,34 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+const useStyles = makeStyles({
+  containerCard: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
+  cardHeader: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
+});
+
 export default function CardCharacter(props) {
-  const { values, setValues } = useContext(ApplictationContext);
+  const classes = useStyles();
   const { item } = props;
   const [expanded, setExpanded] = useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
   return (
-    <Card>
+    <Card className={classes.containerCard}>
       <CardHeader
         title={item.name}
         subheader={new Date(item.created).toLocaleDateString()}
+        className={classes.cardHeader}
       />
       <CardMedia component="img" height="194" image={item.image} />
       <CardActions disableSpacing>

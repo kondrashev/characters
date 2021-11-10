@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     transform: "translate(-50%,0)",
   },
   title: {
-    marginLeft: "40px",
+    marginLeft: "36%",
     fontSize: "20px",
   },
 });
@@ -26,14 +26,19 @@ export default function ListCharacters() {
   const dispatch = useDispatch();
   const getCharacters = (data) => dispatch(loadCharactersFetchData(data));
   const listCharacters = useSelector((state) => state.charactersReducer);
-  let url = `https://rickandmortyapi.com/api/character`;
+  const pagination = (step) => {
+    const page = [];
+    for (let i = step; i <= step - 1 + 10; i++) {
+      page.push(i);
+    }
+    page.join(",");
+    return page;
+  };
+  let url = `https://rickandmortyapi.com/api/character/${pagination(1)}`;
   useEffect(() => {
-    const data = {
-      url,
-    };
-    getCharacters(data);
+    getCharacters(url);
   }, [url]);
-  // console.log(pagination);
+  console.log(listCharacters);
   return (
     <div className={classes.container}>
       <Typography className={classes.title}>List characters</Typography>
