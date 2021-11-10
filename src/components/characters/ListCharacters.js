@@ -28,9 +28,10 @@ export default function ListCharacters() {
   const listCharacters = useSelector((state) => state.charactersReducer);
   const pagination = (step) => {
     const page = [];
-    for (let i = step; i <= step - 1 + 10; i++) {
-      page.push(i);
+    for (let i = 1; i <= 10; i++) {
+      page.push(step > 1 ? `${step - 1}${i}` : `${i}`);
     }
+    if (step > 1) page[9] = parseInt(page[8]) + 1;
     page.join(",");
     return page;
   };
