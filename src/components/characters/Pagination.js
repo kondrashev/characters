@@ -11,7 +11,8 @@ const useStyles = makeStyles({
     transform: "translate(-50%,-50%)",
   },
 });
-export default function PaginationRounded() {
+export default function PaginationRounded(props) {
+  const { count } = props;
   const classes = useStyles();
   const { values, setValues } = useContext(ApplictationContext);
   const pagination = (step) => {
@@ -35,7 +36,7 @@ export default function PaginationRounded() {
   };
   return (
     <Pagination
-      count={Math.round(826 / 10)}
+      count={count}
       variant="outlined"
       shape="rounded"
       onChange={handleChange}

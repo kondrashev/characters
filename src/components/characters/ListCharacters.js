@@ -29,7 +29,6 @@ export default function ListCharacters() {
   useEffect(() => {
     getCharacters(values.urlCharacters);
   }, [values.urlCharacters]);
-  console.log(listCharacters.info);
   return (
     <div className={classes.container}>
       <Typography className={classes.title}>List characters</Typography>

@@ -15,7 +15,7 @@ const Characters = () => {
     <>
       <FilterPanel filterFields={filterFields} />
       <ListCharacters />
-      <PaginationRounded />
+      <PaginationRounded count={Math.round(826 / 10)} />
     </>
   );
 };
