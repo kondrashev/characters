@@ -1,6 +1,15 @@
 import React from "react";
+import FilterPanel from "../characters/FilterPanel";
 
 const Characters = () => {
-  return <div>Table episodes</div>;
+  const filterFields = {
+    Name: "name",
+    Episode: "episode",
+  };
+  return (
+    <>
+      <FilterPanel filterFields={filterFields} />
+    </>
+  );
 };
 export default Characters;

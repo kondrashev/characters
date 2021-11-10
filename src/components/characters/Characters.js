@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import ListCharacters from "./ListCharacters";
 import PaginationRounded from "./Pagination";
-import { ApplictationContext } from "../../index";
 import FilterPanel from "./FilterPanel";
 
 const Characters = () => {
-  const { values, setValues } = useContext(ApplictationContext);
   const filterFields = {
     Name: "name",
     Status: "status",

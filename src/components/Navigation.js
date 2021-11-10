@@ -4,15 +4,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { ApplictationContext } from "../index";
-import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles({
-  tab: {
-    fontSize: "18px",
-  },
-});
 export default function Navigation() {
-  const classes = useStyles();
   const { values, setValues } = useContext(ApplictationContext);
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
@@ -30,7 +23,7 @@ export default function Navigation() {
           aria-label="full width tabs example"
         >
           <Tab
-            className={classes.tab}
+            style={{ fontSize: "18px" }}
             label="Characters"
             onClick={() => {
               setValues({
@@ -41,7 +34,7 @@ export default function Navigation() {
             }}
           />
           <Tab
-            className={classes.tab}
+            style={{ fontSize: "18px" }}
             label="Episodes"
             onClick={() => {
               setValues({
