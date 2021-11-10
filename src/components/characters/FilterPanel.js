@@ -63,10 +63,15 @@ const FilterPanel = (props) => {
     if (url.indexOf("&") !== -1) {
       url = `?${url.substr(1)}`;
     }
-    setValues({
-      ...values,
-      urlCharacters: `https://rickandmortyapi.com/api/character/${url}`,
-    });
+    values.showCharacters
+      ? setValues({
+          ...values,
+          urlCharacters: `https://rickandmortyapi.com/api/character/${url}`,
+        })
+      : setValues({
+          ...values,
+          urlEpisodes: `https://rickandmortyapi.com/api/episode/${url}`,
+        });
   };
   const setFields = Object.entries(filterFields).map(([key, value]) => {
     return (

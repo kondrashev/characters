@@ -26,7 +26,7 @@ export default function PaginationRounded(props) {
   };
   const handleChange = (event, value) => {
     if (event.target.value !== undefined) {
-      count !== 2
+      values.showCharacters
         ? setValues({
             ...values,
             urlCharacters: `https://rickandmortyapi.com/api/character/${pagination(

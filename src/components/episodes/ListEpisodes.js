@@ -89,16 +89,38 @@ export default function ListEpisodes() {
     getEpisodes(values.urlEpisodes);
   }, [values.urlEpisodes]);
   console.log(listEpisodes); //////////////////////
-  const rows = listEpisodes?.map((item) => {
-    return createData(
-      item.name,
-      item.air_date,
-      item.episode,
-      item.created,
-      item.url,
-      item.characters
-    );
-  });
+  //   const rows = listEpisodes?.map((item) => {
+  //     return createData(
+  //       item.name,
+  //       item.air_date,
+  //       item.episode,
+  //       item.created,
+  //       item.url,
+  //       item.characters
+  //     );
+  //   });
+  const rows = !listEpisodes.info
+    ? listEpisodes?.map((item) => {
+        return createData(
+          item.name,
+          item.air_date,
+          item.episode,
+          item.created,
+          item.url,
+          item.characters
+        );
+      })
+    : listEpisodes.results?.map((item) => {
+        return createData(
+          item.name,
+          item.air_date,
+          item.episode,
+          item.created,
+          item.url,
+          item.characters
+        );
+      });
+  console.log();
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
