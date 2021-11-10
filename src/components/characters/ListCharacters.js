@@ -29,15 +29,22 @@ export default function ListCharacters() {
   useEffect(() => {
     getCharacters(values.urlCharacters);
   }, [values.urlCharacters]);
+  console.log(listCharacters.info);
   return (
     <div className={classes.container}>
       <Typography className={classes.title}>List characters</Typography>
       <List>
-        {listCharacters?.map((item) => (
-          <ListItem key={item.id}>
-            <CardCharacter item={item} />
-          </ListItem>
-        ))}
+        {!listCharacters.info
+          ? listCharacters?.map((item) => (
+              <ListItem key={item.id}>
+                <CardCharacter item={item} />
+              </ListItem>
+            ))
+          : listCharacters.results?.map((item) => (
+              <ListItem key={item.id}>
+                <CardCharacter item={item} />
+              </ListItem>
+            ))}
       </List>
     </div>
   );

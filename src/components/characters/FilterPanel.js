@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@mui/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -24,36 +24,49 @@ const FilterPanel = (props) => {
   const classes = useStyles();
   const { filterFields } = props;
   const { values, setValues } = useContext(ApplictationContext);
-  let byFilter = [];
-  let field = "";
-  let fields = [];
+  let filterKeys = [];
+  let filterKey = "";
+  let filterValues = [];
+  let makeURL = [];
   const handleChangeCheckBox = (event) => {
     if (event.target.checked) {
-      byFilter.push(event.target.value);
+      filterKeys.push(event.target.value);
       document.querySelector(`#${event.target.value}`).disabled = false;
       document.querySelector(`#${event.target.value}`).focus();
     } else {
-      byFilter = byFilter.filter((item) => item !== event.target.value);
+      filterKeys = filterKeys.filter((item) => item !== event.target.value);
       document.querySelector(`#${event.target.value}`).disabled = true;
-      fields = fields.filter(
+      filterValues = filterValues.filter(
         (item) =>
           item !== document.querySelector(`#${event.target.value}`).value
       );
       document.querySelector(`#${event.target.value}`).value = "";
-      //   console.log(fields);
     }
   };
   const handleChangeInput = (event) => {
-    field = event.target.value;
+    filterKey = event.target.value;
   };
   const rememberFields = (event) => {
-    fields.push(field);
-    // console.log(fields);
+    filterValues.push(filterKey);
   };
   const getURL = () => {
-    const newByFilter = byFilter.map((item) => {});
-    console.log(byFilter);
-    console.log(fields);
+    let url = "";
+    makeURL = [];
+    filterKeys.forEach((item, index) => {
+      if (filterKeys.length === 1) {
+        makeURL.push(`?${item}=${filterValues[index]}`);
+      } else {
+        makeURL.push(`&${item}=${filterValues[index]}`);
+      }
+    });
+    url = makeURL.join("");
+    if (url.indexOf("&") !== -1) {
+      url = `?${url.substr(1)}`;
+    }
+    setValues({
+      ...values,
+      urlCharacters: `https://rickandmortyapi.com/api/character/${url}`,
+    });
   };
   const setFields = Object.entries(filterFields).map(([key, value]) => {
     return (
