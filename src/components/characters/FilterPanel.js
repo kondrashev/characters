@@ -25,6 +25,8 @@ const FilterPanel = (props) => {
   const { filterFields } = props;
   const { values, setValues } = useContext(ApplictationContext);
   let byFilter = [];
+  let field = "";
+  let fields = [];
   const handleChangeCheckBox = (event) => {
     if (event.target.checked) {
       byFilter.push(event.target.value);
@@ -33,19 +35,25 @@ const FilterPanel = (props) => {
     } else {
       byFilter = byFilter.filter((item) => item !== event.target.value);
       document.querySelector(`#${event.target.value}`).disabled = true;
+      fields = fields.filter(
+        (item) =>
+          item !== document.querySelector(`#${event.target.value}`).value
+      );
       document.querySelector(`#${event.target.value}`).value = "";
+      //   console.log(fields);
     }
   };
-  let field = "";
   const handleChangeInput = (event) => {
     field = event.target.value;
   };
   const rememberFields = (event) => {
-    console.log(field);
+    fields.push(field);
+    // console.log(fields);
   };
   const getURL = () => {
     const newByFilter = byFilter.map((item) => {});
-    // console.log(byFilter);
+    console.log(byFilter);
+    console.log(fields);
   };
   const setFields = Object.entries(filterFields).map(([key, value]) => {
     return (
