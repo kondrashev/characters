@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -25,11 +25,12 @@ const ExpandMore = styled((props) => {
 export default function CardCharacter(props) {
   const { values, setValues } = useContext(ApplictationContext);
   const { item } = props;
+  const [expanded, setExpanded] = useState(false);
   const handleExpandClick = () => {
-    setValues({ ...values, expanded: !values.expanded });
+    setExpanded(!expanded);
   };
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       <CardHeader
         title={item.name}
         subheader={new Date(item.created).toLocaleDateString()}
@@ -37,15 +38,15 @@ export default function CardCharacter(props) {
       <CardMedia component="img" height="194" image={item.image} />
       <CardActions disableSpacing>
         <ExpandMore
-          expand={values.expanded}
+          expand={expanded}
           onClick={handleExpandClick}
-          aria-expanded={values.expanded}
+          aria-expanded={expanded}
           aria-label="show more"
         >
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
-      <Collapse in={values.expanded} timeout="auto" unmountOnExit>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Detail information</Typography>
           <Typography paragraph>{`Gender: ${item.gender}`}</Typography>
